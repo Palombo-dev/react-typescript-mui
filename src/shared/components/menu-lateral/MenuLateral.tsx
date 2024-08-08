@@ -51,7 +51,7 @@ interface IMenulateralProps {
 export const MenuLateral: React.FC<IMenulateralProps> = ({ children }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
-  const { IsDrawerOpen, toggleDrawerOpen } = useDrawerContext();
+  const { IsDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
   return (
     <>
@@ -83,12 +83,15 @@ export const MenuLateral: React.FC<IMenulateralProps> = ({ children }) => {
 
           <Box flex={1}>
             <List component="nav">
-              <ListItemLink 
-              icon="home"
-              label="Página inicial"
-              to="/pagina-inicial"
-              onClick={smDown ? toggleDrawerOpen : undefined}
-              />
+              {drawerOptions.map(drawerOptions => (
+                <ListItemLink
+                key={drawerOptions.path}
+                icon={drawerOptions.icon}
+                label={drawerOptions.label}
+                to={drawerOptions.path}
+                onClick={smDown ? toggleDrawerOpen : undefined}
+                />
+              ))}
             </List>
           </Box>
         </Box>
