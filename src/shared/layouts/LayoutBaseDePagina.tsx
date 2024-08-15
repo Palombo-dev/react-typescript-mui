@@ -1,6 +1,6 @@
 import { Icon, IconButton, useMediaQuery, useTheme } from "@mui/material";
 import { Box, Typography } from "@mui/material";
-import { useDrawerContext } from "../contexts";
+import { useAppThemeContext, useDrawerContext } from "../contexts";
 import { ReactNode } from "react";
 
 interface ILayoutProviderProps {
@@ -18,6 +18,7 @@ export const LayoutBaseDePagina: React.FC<ILayoutProviderProps> = ({
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const mdDown = useMediaQuery(theme.breakpoints.down("md"));
   const {toggleDrawerOpen} = useDrawerContext()
+  const { toggleTheme } = useAppThemeContext()
 
   return (
     <Box height="100%" display="flex" flexDirection="column" gap={1}>
